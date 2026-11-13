@@ -1,0 +1,24 @@
+# Netlify and Cloudflare Pages read this file. Other hosts need the same
+# headers configured their own way (see docs/WEB.md).
+
+/*
+  # The on-device database (SQLite in WebAssembly) needs SharedArrayBuffer,
+  # which browsers only allow on a cross-origin isolated page.
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Embedder-Policy: require-corp
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# The service worker and the page must never be served stale, or an update
+# could never arrive.
+/sw.js
+  Cache-Control: no-cache
+/index.html
+  Cache-Control: no-cache
+/manifest.webmanifest
+  Cache-Control: no-cache
+
+# Bundles have content hashes in their names, so they never change.
+/_expo/*
+  Cache-Control: public, max-age=31536000, immutable

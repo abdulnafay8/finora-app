@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover"
+    />
+    <title>Finora</title>
+    <meta
+      name="description"
+      content="Every account, currency and budget in one calm, private place."
+    />
+
+    <!-- Installable web app -->
+    <link rel="manifest" href="/finora-app/manifest.webmanifest" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/finora-app/icons/favicon-48.png" />
+    <link rel="apple-touch-icon" href="/finora-app/icons/apple-touch-icon.png" />
+    <meta name="theme-color" content="#F6F1E7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0C1310" media="(prefers-color-scheme: dark)" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Finora" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <!-- The `react-native-web` recommended style reset: https://necolas.github.io/react-native-web/docs/setup/#root-element -->
+    <style id="expo-reset">
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        overflow: hidden;
+        /* Matches the app's background so opening it does not flash white. */
+        background-color: #f6f1e7;
+      }
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0c1310;
+        }
+      }
+      #root {
+        display: flex;
+        height: 100%;
+        flex: 1;
+      }
+    </style>
+  <link rel="preload" href="/finora-app/_expo/static/css/web-7759fc7e4ab5c3a29df948af17004f32.css" as="style">
+<link rel="stylesheet" href="/finora-app/_expo/static/css/web-7759fc7e4ab5c3a29df948af17004f32.css"></head>
+
+  <body>
+    <script>
+      // The on-device database needs a cross-origin isolated page. Hosts that
+      // cannot send the headers (GitHub Pages) get them from the service
+      // worker, which only controls the page after the first load: reload
+      // once when it takes over. The app waits for this before opening its
+      // database (src/lib/web-app.ts). `npm run build:web` fills in the base path.
+      (function () {
+        var flag = 'finora-isolation-reload';
+        if (window.crossOriginIsolated) {
+          try {
+            sessionStorage.removeItem(flag);
+          } catch (e) {}
+          return;
+        }
+        if (!window.isSecureContext || !('serviceWorker' in navigator)) return;
+        try {
+          // Already reloaded once and still not isolated: the browser cannot do it.
+          if (sessionStorage.getItem(flag)) return;
+        } catch (e) {
+          return;
+        }
+        var base = '/finora-app';
+        if (base.charAt(0) === '%') base = '';
+        window.__FINORA_AWAITING_ISOLATION__ = true;
+        var reload = function () {
+          try {
+            sessionStorage.setItem(flag, '1');
+          } catch (e) {}
+          window.location.reload();
+        };
+        navigator.serviceWorker
+          .register(base + '/sw.js', { scope: base + '/' })
+          .then(function () {
+            if (navigator.serviceWorker.controller) reload();
+            else navigator.serviceWorker.addEventListener('controllerchange', reload);
+          })
+          .catch(function () {
+            window.__FINORA_AWAITING_ISOLATION__ = false;
+          });
+      })();
+    </script>
+    <noscript>Finora needs JavaScript to run.</noscript>
+    <div id="root"></div>
+  <script src="/finora-app/_expo/static/js/web/__expo-metro-runtime-97703ae02682710149335928b974f18d.js" defer></script><script src="/finora-app/_expo/static/js/web/__common-9bc29a7322dfe6b3ff94d9ec34b569ef.js" defer></script><script src="/finora-app/_expo/static/js/web/entry-d81ebc345cba4331859fa2a5ac83890d.js" defer></script>
+</body>
+</html>

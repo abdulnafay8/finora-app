@@ -46,8 +46,8 @@
         flex: 1;
       }
     </style>
-  <link rel="preload" href="/finora-app/_expo/static/css/web-11de824f17d90aaa5c6a09f7c73c46c4.css" as="style">
-<link rel="stylesheet" href="/finora-app/_expo/static/css/web-11de824f17d90aaa5c6a09f7c73c46c4.css"></head>
+  <link rel="preload" href="/finora-app/_expo/static/css/web-4fd4cab4f63918c5ce5d2ad13d56fe3d.css" as="style">
+<link rel="stylesheet" href="/finora-app/_expo/static/css/web-4fd4cab4f63918c5ce5d2ad13d56fe3d.css"></head>
 
   <body>
     <script>
@@ -65,14 +65,17 @@
           return;
         }
         if (!window.isSecureContext || !('serviceWorker' in navigator)) return;
+        // The development server (`npx expo start`) leaves the placeholder
+        // unfilled and has no service worker. Its page is not isolated, which
+        // the database copes with; there is nothing to wait for.
+        var base = '/finora-app';
+        if (base.charAt(0) === '%') return;
         try {
           // Already reloaded once and still not isolated: the browser cannot do it.
           if (sessionStorage.getItem(flag)) return;
         } catch (e) {
           return;
         }
-        var base = '/finora-app';
-        if (base.charAt(0) === '%') base = '';
         window.__FINORA_AWAITING_ISOLATION__ = true;
         var reload = function () {
           try {
@@ -93,6 +96,6 @@
     </script>
     <noscript>Finora needs JavaScript to run.</noscript>
     <div id="root"></div>
-  <script src="/finora-app/_expo/static/js/web/__expo-metro-runtime-97703ae02682710149335928b974f18d.js" defer></script><script src="/finora-app/_expo/static/js/web/__common-dd041bf940463e89499def30816db99d.js" defer></script><script src="/finora-app/_expo/static/js/web/entry-4563139024efe42ab050ddc8187e7be5.js" defer></script>
+  <script src="/finora-app/_expo/static/js/web/__expo-metro-runtime-97703ae02682710149335928b974f18d.js" defer></script><script src="/finora-app/_expo/static/js/web/__common-b9e37251e863d948ec0c5d2f1dbb180c.js" defer></script><script src="/finora-app/_expo/static/js/web/entry-1c903835353edd21e9ab60f6b9442dea.js" defer></script>
 </body>
 </html>
